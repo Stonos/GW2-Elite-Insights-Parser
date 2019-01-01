@@ -92,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\PickLeaderboardBuilder.cs" />
     <Compile Include="Exceptions\TooShortException.cs" />
     <Compile Include="Exceptions\SkipException.cs" />
     <Compile Include="Exceptions\CancellationException.cs" />
@@ -110,6 +111,8 @@
     <Compile Include="Models\ParseModels\Simulator\BoonSimulationItems\AbstractBoonSimulationItem.cs" />
     <Compile Include="Models\ParseModels\Simulator\BoonSimulationItems\BoonSimulationItemOverstack.cs" />
     <Compile Include="Models\ParseModels\Simulator\BoonSimulationItems\AbstractBoonSimulationItemWasted.cs" />
+    <Compile Include="Models\PickLeaderboardModels\PickLeaderboard.cs" />
+    <Compile Include="Models\PickLeaderboardModels\PickLeaderboardPlayer.cs" />
     <Compile Include="Parser\Parser.cs" />
     <Compile Include="Controllers\GW2APIController.cs" />
     <Compile Include="Parser\ParseHelper.cs" />

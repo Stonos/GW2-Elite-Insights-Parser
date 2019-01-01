@@ -170,6 +170,7 @@ namespace LuckParser
                     {
                         RawFormatBuilder.UpdateStatisticSwitches(switches);
                     }
+                    switches.CalculateMechanics = true; // for the picks leaderboard
                     Statistics statistics = statisticsCalculator.CalculateStatistics(log, switches);
                     Console.Write("Statistics Computed\n");
 
@@ -234,6 +235,29 @@ namespace LuckParser
                             {
                                 var builder = new RawFormatBuilder(sw, log, settings, statistics, uploadresult);
                                 builder.CreateXML();
+                            }
+                        }
+                    }
+
+                    if (log.FightData.Logic.Extension.Equals("dhuum") && log.FightData.IsCM)
+                    {
+                        string outputFile = "pickLeaderboard.json";
+                        string oldLeaderboardJson;
+                        try
+                        {
+                            oldLeaderboardJson = File.ReadAllText(@outputFile);
+                        }
+                        catch (Exception exception)
+                        {
+                            oldLeaderboardJson = null;
+                        }
+
+                        using (FileStream fs = new FileStream(outputFile, FileMode.OpenOrCreate, FileAccess.Write))
+                        {
+                            using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
+                            {
+                                var builder = new PickLeaderboardBuilder(sw, log, statistics, fName, oldLeaderboardJson);
+                                builder.CreatePickLeaderboard();
                             }
                         }
                     }
